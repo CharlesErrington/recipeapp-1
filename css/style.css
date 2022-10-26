@@ -3,20 +3,28 @@
 	font-size: 62.5%;
 }
 
-#recipeTitleContainer h2 {
-    display: grid;
-    grid-template-columns: 300px 300px;
-    padding: 0.3rem;
+html {
+    scroll-behavior: smooth;
 }
 
-.hidden {
+#recipeTitleContainer h2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    padding: 0.3rem;
+    line-height: 20px;
+} 
+
+#recipeTitleContainer {
+    padding: 2rem;
+}
+ .hidden {
     display: none;
     padding: 1rem 0;
 }
 
 
 h2 {
-    font-size: 1rem;
+    font-size: 1.3rem;
     padding: 1rem 0;
 } 
 
@@ -27,8 +35,11 @@ h2 {
 
 li {
     padding: 0.3rem 0;
+} 
+ 
+img {
+    max-width: 100%;
 }
-
 #searchBackgroundImage {
     background-attachment: fixed;
     background-image: url("images/openFridge.jpeg");
@@ -39,20 +50,22 @@ li {
     background-blend-mode: multiply;
     
     background-color: rgba(0,0,0,0);
-    /* This sets the height of the background image to the height of the viewport */
+   
     min-height: 100vh;
-}
+   
+    
+} 
 
-#searchSection {
+ #searchSection {
     padding: 1rem;
     color: black;
     font-family: 'Noto Sans Mono', monospace;
     font-weight: 100;
     max-width: 800px;
     margin: 0 auto;
-}
+} 
 
-p {
+ p {
     font-size: 1.5rem;
     padding: 2rem 0;
 }
@@ -72,11 +85,11 @@ input {
 
 a {
     color: white;
-} 
+}  
 
 
-/* These are set to transparent and then the background changed with greensock */
-input, button, select {
+ /* These are set to transparent and then the background changed with greensock  */
+ input, button, select {
     background-color:rgba(0,0,0,0); 
 }
 
@@ -88,47 +101,42 @@ h1 {
 h1 + h2 {
     font-size: 3rem;
     text-align: center;
-}
+} 
 
-/* #recipeTitleContainer h2 {
-    opacity: 0.1;
-} */
 
-/* .active {
-    background-color: blue;
-} */
 
-#recipeDetails {
+ #recipeDetails {
     max-width: 800px;
     padding: 2rem;
     margin: 0 auto;
     font-family: 'Noto Sans Mono', monospace;
-}
+} 
 
-#recipeDetails h2 {
+ #recipeDetails h2 {
     font-size: 2rem;
-}
+} 
 
-#recipeDetails ol {
+ #recipeDetails ol {
     line-height: 20px;
     padding: 2rem 0;
-}
+} 
 
 
 
-.hiddenLeft {
+ .hiddenLeft {
     opacity: 0;
     filter: blur(5px);
     transform: translateX(-090%);
     transition: all 1s;
 	
-}
+} 
 
 
 
-.show {
+ .show {
     opacity: 1;
     filter: blur(0);
     transform: translateX(0%);
 	transition: all 1s;
 }
+

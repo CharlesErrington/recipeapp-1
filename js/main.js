@@ -1,19 +1,22 @@
+
+
 gsap.registerPlugin(ScrollTrigger)
 
 document.querySelector('#btn').addEventListener('click',() => {
     getRecipe();
-    removeHidden();
-    
-  
-    
+    removeHidden();  
 });
+
 //This uses event delegation to target each anchor text when clicked
-document.querySelector('#recipeTitleContainer').addEventListener('click', event => {
+document.querySelector('#recipeTitleContainer').addEventListener('click', (event) => {
     if (event.target.className === 'recipeTitles') {
-        showRecipe(event.target.id);
+        showRecipe(event.target.id);     
+
   }
   
 });
+
+
 
 //This event listener triggers when a select option is chosen and reorders the recipes
 document.querySelector('#orderSelector').addEventListener('change', () => {
@@ -46,7 +49,7 @@ function getRecipe(){
             console.log(`recipe array after ${recipeArray}`)
             //This is a function that wraps the titles of the returned recipes in <h2> and <a> tags to input into the dom
             let recipeTitles = function(){
-                return recipeArray.map((el, i) => `<h2><a href="#" class="recipeTitles" id="${el.id}">${el.title}</a> -- ${el.missedIngredientCount} ingredient${el.missedIngredientCount > 1 ? 's' : ''} missing</h2>`).join('')
+                return recipeArray.map((el, i) => `<h2><a href="#recipeDetails" class="recipeTitles" id="${el.id}">${el.title}</a> -- ${el.missedIngredientCount} ingredient${el.missedIngredientCount > 1 ? 's' : ''} missing</h2>`).join('')
             }
             
             document.querySelector('#recipeTitleContainer').innerHTML = recipeTitles()
@@ -198,33 +201,53 @@ gsap.to('select', {duration: 3, backgroundColor: 'white'})
 gsap.to('input', {duration: 3, backgroundColor: 'white'})
 
 
-//this timeline might be completely unecessary with the current setup
-// const timeline = gsap.timeline({
-    
-//     paused: true
-// });
+
 
 
 //this function reduces the opacity of the text in the top section as you scroll down the screen
 
-function init() {
+// let screenHeightForPin = window.matchMedia("(min-height: 930px")
+// let screenWidthForPin = window.matchMedia("(min-width: 760px")
+// function init(screenHeightForPin, screenWidthForPin) {
+//     if (screenHeightForPin.matches) {
+//         // gsap.to('#searchSectionBody', {opacity: 0, scrollTrigger: {
+//     //     trigger: '#searchBackgroundImage',
+//     //     start: 'top top-=150',
+//     //     end: 'bottom center',
+//     //     scrub: true,
+        
+        
+//     // }});
 
-        gsap.to('#searchSectionBody', {opacity: 0, scrollTrigger: {
-            trigger: '#searchBackgroundImage',
-            start: 'top top-=150',
-            end: 'bottom center',
-            scrub: true,
-            
-            
-        }});
-        gsap.set('#recipeDetails', {scrollTrigger: {
-            trigger: '#recipeDetails',
-            start: 'top bottom-=20%',
-            toggleClass: 'active',
-            // markers: true
-        }})
+//     gsap.to('#searchSectionBody', {
+//         autoAlpha:0,
+//         ease:'none',
+//         scrollTrigger: {
+//             trigger: '#searchSection',
+//             end: 'bottom center-=80%',
+//             pin: true,
+//             scrub: true,
+//             // markers: true
+//         }
+//     })
+//     gsap.set('#recipeDetails', {scrollTrigger: {
+//         trigger: '#recipeDetails',
+//         start: 'top bottom-=20%',
+//         toggleClass: 'active',
+//         // markers: true
+//     }})
 
-}
+//     }
+    
+// }
+
+// screenHeightForPin.addEventListener(init)
+// screenWidthForPin.addEventListener(init)
+
+
+
+//This function pins the title to the screen as you scroll down
+
 
 window.addEventListener('load', function() {
     init();
@@ -245,3 +268,4 @@ const observer = new IntersectionObserver((entries) => {
 
 const hiddenElements = document.querySelectorAll('.hiddenLeft');
 hiddenElements.forEach((el) => observer.observe(el));
+
